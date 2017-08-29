@@ -22,7 +22,7 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
     fileprivate let disposeBag = DisposeBag()
     
     private var reference : DatabaseReference!
-    private var entries: [String] = []
+    private var entries: [DataSnapshot] = []
     
     enum Ref {
         case list, count
@@ -74,8 +74,9 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.listReference().childByAutoId().setValue(value)
     }
     
-    private func removeComment(id: String) {
-        self.listReference().child(id).removeValue()
+    private func removeComment(row: Int) {
+        let snapshot: DataSnapshot = self.entries[row]
+        self.listReference().child(snapshot.key).removeValue()
     }
     
     private func listReference() -> DatabaseReference {
@@ -90,12 +91,18 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.reference = Database.database().reference()
         
         self.listReference().observe(.childAdded, with: { [weak self] (snapshot) in
-            let key = snapshot.key
-            let value = snapshot.value as! String
-            self?.entries.insert(key + " " + value, at: 0)
+            let indexPath = IndexPath.init(row: 0, section: 0)
+            self?.entries.insert(snapshot, at: 0)
+            self?.tableView.insertRows(at: [indexPath], with: .automatic)
+        })
+
+        self.listReference().observe(.childRemoved, with: { [weak self] (snapshot) in
+            if let index = self?.entries.index(where: { $0.key == snapshot.key }) {
+                let indexPath: IndexPath = IndexPath.init(row: index, section: 0)
+                self?.entries.remove(at: index)
+                self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
             
-            let indexPath = NSIndexPath.init(item: 0, section: 0)
-            self?.tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
         })
         
         self.countReference().observe(.value, with: { [weak self] (snapshat) in
@@ -108,7 +115,8 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier)!
-        cell.textLabel?.text = entries[indexPath.row]
+        let snapshot: DataSnapshot = entries[indexPath.row]
+        cell.textLabel?.text = snapshot.value as? String
         cell.backgroundColor = UIColor.init(red: 10, green: 10, blue: 10, alpha: 0.3)
         return cell
     }
@@ -123,6 +131,7 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.removeComment(row: indexPath.row)
     }
     
 }
