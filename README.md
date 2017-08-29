@@ -1,1 +1,3 @@
 # RTraining.iOS
+
+## git clone
