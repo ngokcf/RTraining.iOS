@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>763657503514-fhh8ru330tm0uefq8sb0cq5lci935s3b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.763657503514-fhh8ru330tm0uefq8sb0cq5lci935s3b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA75xi0PWrebXWNaZWRV_ovHiBIJ0Ptk9E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>763657503514</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.training.training</string>
+	<key>PROJECT_ID</key>
+	<string>training-a0bb4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>training-a0bb4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:763657503514:ios:ac97e395b2a82a0c</string>
+	<key>DATABASE_URL</key>
+	<string>https://training-a0bb4.firebaseio.com</string>
+</dict>
+</plist>
