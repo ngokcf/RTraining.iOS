@@ -1,3 +1,6 @@
 # RTraining.iOS
 
-## git clone
+## 環境
+
+Swift3.1
+Xcode8
