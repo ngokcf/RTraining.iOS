@@ -35,6 +35,7 @@ class ViewController: UITableViewController {
     
     func setupEntries() {
         entries.append(" Firebase Realtime Database ")
+        entries.append(" Firebase Cloud Message")
     }
     
     // MARK : Delegate
@@ -55,7 +56,11 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(SyncViewController.make(), animated: true)
+        if (indexPath.row == 0) {
+            self.navigationController?.pushViewController(SyncViewController.make(), animated: true)
+        } else {
+            print(" No Route ")
+        }
     }
 
 }
