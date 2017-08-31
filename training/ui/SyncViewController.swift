@@ -12,7 +12,7 @@ import RxSwift
 import FirebaseDatabase
 
 
-class SyncViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SyncViewController: UIViewController {
     
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var textField: UITextField!
@@ -21,8 +21,8 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
     fileprivate let Identifier: String = "Cell"
     fileprivate let disposeBag = DisposeBag()
     
-    private var reference : DatabaseReference!
-    private var entries: [DataSnapshot] = []
+    fileprivate var reference : DatabaseReference!
+    fileprivate var entries: [DataSnapshot] = []
     
     enum Ref {
         case list, count
@@ -70,11 +70,11 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    private func addComment(value: String) {
+    fileprivate func addComment(value: String) {
         self.listReference().childByAutoId().setValue(value)
     }
     
-    private func removeComment(row: Int) {
+    fileprivate func removeComment(row: Int) {
         let snapshot: DataSnapshot = self.entries[row]
         self.listReference().child(snapshot.key).removeValue()
     }
@@ -107,11 +107,15 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.countReference().observe(.value, with: { [weak self] (snapshat) in
             guard let value = snapshat.value as? Int else { return }
-            self?.label.text = " Child Count = \(value)"
+            self?.label.text = " Comment Count = \(value)"
         })
     }
     
-    // MARK : UITableViewDelegate && UITableViewDataSource
+}
+
+// MARK : UITableViewDelegate
+
+extension SyncViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier)!
@@ -121,17 +125,23 @@ class SyncViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.removeComment(row: indexPath.row)
+    }
+    
+}
+
+// MARK : UITableViewDataSource
+
+extension SyncViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entries.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.removeComment(row: indexPath.row)
     }
     
 }
