@@ -1,4 +1,6 @@
 PODS:
+  - APIKit (3.1.1):
+    - Result (~> 3.0)
   - Firebase/Core (4.1.0):
     - FirebaseAnalytics (= 4.0.3)
     - FirebaseCore (= 4.0.5)
@@ -22,12 +24,14 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - Himotoki (3.0.1)
   - leveldb-library (1.18.3)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Result (3.2.3)
   - RxBlocking (3.6.1):
     - RxSwift (~> 3.6)
   - RxCocoa (3.6.1):
@@ -37,27 +41,32 @@ PODS:
     - RxSwift (~> 3.6)
 
 DEPENDENCIES:
+  - APIKit (~> 3.1)
   - Firebase/Core
   - Firebase/Database
+  - Himotoki (~> 3.0.1)
   - RxBlocking (~> 3.0)
   - RxCocoa (~> 3.0)
   - RxSwift (~> 3.0)
   - RxTest (~> 3.0)
 
 SPEC CHECKSUMS:
+  APIKit: 7460983f490d3bde6aaaaa4164d18c9865a6f91d
   Firebase: ebebf41db7f10e0c7668b6eaaa857fbe599aa478
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
   FirebaseCore: 7d876ea97a830cbe62ba7fbbe7670c833a324ba0
   FirebaseDatabase: 94c38c783d23dc6679441050772d42e801d06e9e
   FirebaseInstanceID: 0500e3cb54a1a4e01a8cffcc09323b8bb8fc7e1e
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  Himotoki: 85fda41d4d0e14f7228317a3b474175cdfb8f515
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   RxBlocking: 4f4bd5732e8b952e54ae8a57739bcfb645de12bc
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxTest: 1d00348a7848c91ab5bf5d197d2378aa6b2bb356
 
-PODFILE CHECKSUM: 7f5c64927ca25c19c1ee39b5c33879416569accf
+PODFILE CHECKSUM: ba88ac775a2a2aeb225f9fa42a6002784e774ce8
 
 COCOAPODS: 1.2.1

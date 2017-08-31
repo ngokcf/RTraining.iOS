@@ -8,8 +8,10 @@ target 'training' do
   # Pods for training
   pod 'Firebase/Core'
   pod 'Firebase/Database'
-  pod 'RxSwift',    '~> 3.0'
-  pod 'RxCocoa',    '~> 3.0'
+  pod 'RxSwift',  '~> 3.0'
+  pod 'RxCocoa',  '~> 3.0'
+  pod 'APIKit',   '~> 3.1'
+  pod "Himotoki", "~> 3.0.1"
 
   target 'trainingTests' do
     inherit! :search_paths
